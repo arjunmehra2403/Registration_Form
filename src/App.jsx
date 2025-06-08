@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import StepOne from './Components/StepOne';
 import StepTwo from './Components/StepTwo';
-import StepThree from './Components/Stepthree';
+import StepThree from './Components/StepThree';
 import StepFour from './Components/StepFour';
 import StepFive from './Components/StepFive';
 
