@@ -38,14 +38,14 @@ const StepThree = ({ teamData, setTeamData }) => {
               required
             />
 
-            {(isIndividual || idx === 0) && (
+            {(isIndividual || idx === 0 || idx === 1 || idx === 2) && (
               <>
                 <label className="block font-medium text-gray-700 mb-1">
                   WhatsApp / Contact Number <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
-                  value={member.contact}
+                  value={member.contact || ""}
                   onChange={(e) => handleChange(idx, "contact", e.target.value)}
                   className="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400 mb-4"
                   required
