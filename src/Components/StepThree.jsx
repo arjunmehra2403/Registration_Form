@@ -21,6 +21,16 @@ const StepThree = ({ teamData, setTeamData }) => {
           Participant Details
         </h3>
 
+        {/* Important Note */}
+        <div className="mb-6 p-4 bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-100 border-l-4 border-yellow-500 text-yellow-900 rounded-lg shadow">
+          <h4 className="font-bold text-md mb-1">🔔 Important Note:</h4>
+          <p className="text-sm leading-relaxed">
+            For a <strong>2 or 3 member team</strong>, if one participant belongs to the category
+            <em> "EWS/SC/ST school student"</em>, then <strong>all team members must be from the same school category</strong>.<br />
+            <span className="font-semibold text-yellow-800">All team members must be from the same school.</span>
+          </p>
+        </div>
+
         {teamData.map((member, idx) => (
           <div key={idx} className="mb-8 border-b pb-6 last:border-b-0">
             <h4 className="font-semibold text-gray-800 mb-3 text-md">
