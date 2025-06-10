@@ -13,7 +13,6 @@ const StepThree = ({ teamData, setTeamData }) => {
   };
 
   const isIndividual = teamData.length === 1;
-
   return (
     <div className="max-w-2xl mx-auto bg-green-50 shadow-lg rounded-lg overflow-hidden border border-green-300 mt-6">
       <div className="p-6">

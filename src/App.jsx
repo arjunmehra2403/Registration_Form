@@ -12,6 +12,9 @@ const RegistrationForm = () => {
   const [participants, setParticipants] = useState('');
   const [teamData, setTeamData] = useState([]);
   const [errors, setErrors] = useState({});
+  const [stepFourValid, setStepFourValid] = useState(false); // ✅ NEW state
+  const [stepFiveValid, setStepFiveValid] = useState(false); // ✅ NEW
+
 
   useEffect(() => {
     if (mode === "Individual") {
@@ -39,15 +42,44 @@ const RegistrationForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const validateStep3 = () => {
+    const newErrors = {};
+    let isValid = true;
+
+    teamData.forEach((member, index) => {
+      if (!member.name || !member.name.trim()) {
+        isValid = false;
+        newErrors[`name-${index}`] = `Name is required for participant ${index + 1}`;
+      }
+      if (!member.contact || !member.contact.trim()) {
+        isValid = false;
+        newErrors[`contact-${index}`] = `Contact is required for participant ${index + 1}`;
+      }
+      if (!member.category || !member.category.trim()) {
+        isValid = false;
+        newErrors[`category-${index}`] = `Category is required for participant ${index + 1}`;
+      }
+    });
+
+    if (!isValid) {
+      alert("Please fill in all required fields for each participant.");
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
   const handleNext = () => {
-    if (step === 1 && validateStep1()) {
+    if (step === 1) {
+      if (!validateStep1()) return;
       if (mode === "Individual") {
         setTeamData([{ name: '', contact: '', category: '' }]);
         setStep(3);
       } else {
         setStep(2);
       }
-    } else if (step === 2 && validateStep2()) {
+    } else if (step === 2) {
+      if (!validateStep2()) return;
       const defaultTeam = Array.from({ length: parseInt(participants) }, () => ({
         name: '',
         contact: '',
@@ -56,13 +88,23 @@ const RegistrationForm = () => {
       setTeamData(defaultTeam);
       setStep(3);
     } else if (step === 3) {
+      if (!validateStep3()) return;
       setStep(4);
     } else if (step === 4) {
+      if (!stepFourValid) {
+        alert("Please fill in all required Step 4 fields before proceeding.");
+        return;
+      }
       setStep(5); // ✅ Go to Payment Step
     } else if (step === 5) {
-      console.log({ email, mode, participants, teamData });
-      alert("Form submitted!");
-    }
+  if (!stepFiveValid) {
+    alert("Please upload payment screenshot and agree before submitting.");
+    return;
+  }
+  console.log({ email, mode, participants, teamData });
+  alert("Form submitted!");
+}
+
   };
 
   const handleBack = () => {
@@ -98,11 +140,24 @@ const RegistrationForm = () => {
             <StepThree teamData={teamData} setTeamData={setTeamData} />
           )}
           {step === 4 && (
-            <StepFour email={email} mode={mode} participants={participants} teamData={teamData} />
+            <StepFour
+              email={email}
+              mode={mode}
+              participants={participants}
+              teamData={teamData}
+              onDataChange={(data) => setStepFourValid(data.isValid)} // ✅ Capture validity from StepFour
+            />
           )}
           {step === 5 && (
-            <StepFive email={email} mode={mode} participants={participants} teamData={teamData} />
+            <StepFive
+              email={email}
+              mode={mode}
+              participants={participants}
+              teamData={teamData}
+              onValidationChange={(valid) => setStepFiveValid(valid)} // ✅
+            />
           )}
+
 
           <div className="flex justify-between items-center pt-4">
             <button
