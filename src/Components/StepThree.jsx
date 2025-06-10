@@ -25,7 +25,7 @@ const StepThree = ({ teamData, setTeamData }) => {
           <h4 className="font-bold text-md mb-1">🔔 Important Note:</h4>
           <p className="text-sm leading-relaxed">
             For a <strong>2 or 3 member team</strong>, if one participant belongs to the category
-            <em> "EWS/SC/ST school student"</em>, then <strong>all team members must be from the same school category</strong>.<br />
+            <em> "EWS/SC/ST school student"</em>, then <strong>the category of all or other  members must be from the same school category</strong>.<br />
             <span className="font-semibold text-yellow-800">All team members must be from the same school.</span>
           </p>
         </div>
