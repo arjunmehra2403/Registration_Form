@@ -38,19 +38,21 @@ const StepFour = ({ onDataChange, initialData = {} }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  useEffect(() => {
-    if (onDataChange) {
-      onDataChange({
-        schoolName,
-        schoolAddress,
-        schoolIdentityNumber,
-        categories,
-        projectType,
-        projectTitle,
-        isValid: validate(),
-      });
-    }
-  }, [schoolName, schoolAddress, schoolIdentityNumber, categories, projectType, projectTitle]);
+useEffect(() => {
+  if (onDataChange) {
+    const valid = validate();
+    onDataChange({
+      isValid: valid,
+      schoolName,
+      schoolAddress,
+      schoolIdentityNumber,
+      categories,
+      projectType,
+      projectTitle
+    });
+  }
+}, [schoolName, schoolAddress, schoolIdentityNumber, categories, projectType, projectTitle]);
+
 
   return (
     <div className="max-w-2xl mx-auto bg-green-50 shadow-lg rounded-lg overflow-hidden border border-green-300 mt-6">

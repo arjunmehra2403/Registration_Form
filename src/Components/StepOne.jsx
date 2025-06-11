@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import bannerImage from "../assets/banner.jpg"; // <- make sure this image is available
 
 const StepOne = ({ email, setEmail, mode, setMode, errors }) => {
