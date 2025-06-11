@@ -93,7 +93,7 @@ useEffect(() => {
 
         <div>
           <label className="block font-semibold text-gray-800 mb-1">
-            School Identity Number <span className="text-red-600">*</span>
+            School Identity Card Number <span className="text-red-600">*</span>
           </label>
           <input
             type="text"

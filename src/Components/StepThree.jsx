@@ -87,5 +87,4 @@ const StepThree = ({ teamData, setTeamData }) => {
     </div>
   );
 };
-
 export default StepThree;
