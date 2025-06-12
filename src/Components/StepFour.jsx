@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 const categoriesList = [
   "Green & Clean Energy",
   "Environment Prevention",
@@ -9,7 +8,6 @@ const categoriesList = [
   "Science & Technology",
   "Sustainability",
 ];
-
 const StepFour = ({ onDataChange, initialData = {} }) => {
   const [schoolName, setSchoolName] = useState(initialData.schoolName || '');
   const [schoolAddress, setSchoolAddress] = useState(initialData.schoolAddress || '');
@@ -172,5 +170,4 @@ useEffect(() => {
     </div>
   );
 };
-
 export default StepFour;
